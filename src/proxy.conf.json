@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://988ee4374ba7.ngrok.io/execute",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

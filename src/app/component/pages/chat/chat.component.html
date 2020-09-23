@@ -1,0 +1,145 @@
+<div class="container" *ngIf="emptyState">
+  <div>
+    <div class="messaging">
+      <div class="nochatmsg">
+        <p class="nochatimagetxt">Currently no chats are available</p>
+      </div>
+      <div class="nochatimg">
+        <img src="assets/images/chat.jpg" />
+      </div>
+      <div class="nochatmsg">
+        <p class="nochatendimagetxt">Find, buy, sell and promote traditional medicine.</p>
+        <p class="chat-slogan">Make your life easier with Panchakarma Interactive Chat platform.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="main" class="clearfix ad-post-page animated fadeIn" *ngIf="!emptyState" style="background-color: #6caaa861;">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-xl-3 chat" style="height: 850px;">
+        <div class="card mb-sm-3 mb-md-0 contacts_card">
+          <div class="card-header">
+            <div class="input-group">
+              <input type="text" placeholder="Search..." name="categoryName" [(ngModel)]="categoryName"
+                class="form-control search">
+              <div class="input-group-prepend">
+                <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body contacts_body">
+            <div class="contacts"
+              *ngFor="let chat of chatlist| search:'fromUserName,toUserName':categoryName; index as i">
+              <li [ngClass]="{'active':selectedMenu==i}">
+                <div class="d-flex bd-highlight">
+                  <i class="fa fa-trash pull-right" (click)="openPopupMessage(chat)"
+                    style="text-align: right; float: right; color:#868585; margin-top: 30px; width: 10px; margin-right: 10px;"></i>
+                  <div class="img_cont" (click)="selectChat(chat, i)">
+                    <img src="https://images.pexels.com/photos/48604/pexels-photo-48604.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="rounded-circle user_img">
+                  </div>
+                  <!-- <div class="user_info" *ngIf="chat.fromUserId !== userId" (click)="selectChat(chat, i)">
+                    <span>{{chat.fromUserName}}</span>
+                    <p class="wrap_description">{{chat.postTitle}}</p>
+                    <p>{{chat.createdAt | date}}</p>
+                  </div> -->
+                  <div class="user_info" *ngIf="chat.toUserId !== userId" (click)="selectChat(chat, i)">
+                    <span>{{chat.toUserName}}</span>
+                    <p class="wrap_description">{{chat.postTitle}}</p>
+                    <p>{{chat.createdAt | date}}</p>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+      <div class="col-md-8 col-xl-6 chat" style="height: 850px;">
+        <div class="card">
+          <div class="card-header msg_head">
+            <div class="d-flex bd-highlight">
+              <div class="img_cont">
+                <img src="https://images.pexels.com/photos/48604/pexels-photo-48604.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="rounded-circle user_img">
+              </div>
+              <div class="user_info">
+                <span><b>{{selectChatTitle}}</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body msg_card_body">
+            <div *ngIf="previousData">
+              <div *ngFor="let previousMessage of previousMessageList">
+                <div class="d-flex justify-content-start mb-4" *ngIf="previousMessage.fromUserId === chat_post_user_id">
+                  <div class="msg_cotainer">
+                    {{previousMessage.contents}}
+                    <span class="msg_time">{{previousMessage.timesent | chatRelativeTime}}</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mb-4"
+                  *ngIf="previousMessage.fromUserId === chat_loggedin_user_id">
+                  <div class="msg_cotainer_send">
+                    {{previousMessage.contents}}
+                    <span class="msg_time_send">{{previousMessage.timesent | chatRelativeTime}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let message of messageList">
+              <div class="d-flex justify-content-start mb-4" *ngIf="message.received !== null">
+                <div class="msg_cotainer">
+                  {{message.received}}
+                  <span class="msg_time">{{message.receivedDate | chatRelativeTime}}</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end mb-4" *ngIf="message.sent !== null">
+                <div class="msg_cotainer_send">
+                  {{message.sent}}
+                  <span class="msg_time_send">{{message.sentDate | chatRelativeTime}}</span>
+                  <span class="msg_time_send">{{message.receivedDate | chatRelativeTime}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="input-group">
+              <textarea style="background-color: #6caaa8;" name="textMessage" (keyup.enter)="keyUpsendMessage()" [(ngModel)]="textMessage" class="form-control type_msg"
+                placeholder="Type your message..."></textarea>
+              <div class="input-group-append" (click)="sendMessage()">
+                <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- popup - notify user password warning message -->
+<ng-template #popupUserPost let-modal>
+  <div class="modal-header receipt-popup">
+    <div>
+      <p style="font-size: 16px;
+      font-weight: 600;">Confirmation Message</p>
+      <div class="underline"></div>
+    </div>
+  </div>
+  <div id="print-section4" class="modal-body receipt-popup">
+    <div class="receipt-content">
+      <div class="summary-wrapper">
+        Are you sure you want to delete this chat ?
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer fund-transfer-popup">
+    <div class="btn-wrapper">
+      <button type="button" class="btn btn-modal-cancel delete-fail" (click)="closeMessage()">
+        Cancel
+      </button>
+      <button type="button" (click)="deleteChat()" class="btn btn-modal delete-success">
+        Confirm
+      </button>
+    </div>
+  </div>
+</ng-template>

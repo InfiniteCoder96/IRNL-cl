@@ -1,0 +1,53 @@
+<!-- login start -->
+<div class="pa-login-model">
+  <div class="modal fade" id="loginModel">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" #closebutton class="pa-login-close close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-body">
+          <h1 class="pa-login-title">Login</h1>
+          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="pa-login-form">
+              <input type="text" name="username" [(ngModel)]="model.username" placeholder="Username" #username="ngModel"
+                     autocomplete="username" required>
+              <div class="input-group mb-3">
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                  <div *ngIf="username.errors.required">
+                    Username is required.
+                  </div>
+                </div>
+              </div>
+              <input type="password" name="password" [(ngModel)]="model.password" placeholder="Password"
+                     #password="ngModel" autocomplete="current-password" required>
+              <div class="input-group mb-4">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                  <div *ngIf="password.errors.required">
+                    Password is required.
+                  </div>
+                </div>
+              </div>
+              <div class="pa-remember">
+                <label>Remember Me
+                  <input type="checkbox">
+                  <span class="s_checkbox"></span>
+                </label>
+                <a href="javascript:;" class="pa-forgot-password" data-toggle="modal"
+                   data-target="#forgotModal" data-dismiss="modal" aria-label="Close">Forgot
+                  Password ?</a>
+              </div>
+              <div class="pa-login-btn">
+                <button class="pa-btn">Login</button>
+                <p>Don't have an account? <a href="javascript:;" data-toggle="modal"
+                                             data-target="#signUpModal" data-dismiss="modal" aria-label="Close">Sign
+                  up</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login end -->

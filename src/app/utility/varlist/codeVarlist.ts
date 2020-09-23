@@ -1,0 +1,4 @@
+export const CODE_REQUEST_TIMEOUT = '202';
+export const CODE_REQUEST_UNAUTHORIZED = '204';
+export const CODE_REQUEST_INVALID_USERSESSION = '203';
+export const CODE_SUCCESS = '000';

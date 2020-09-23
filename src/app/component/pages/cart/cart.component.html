@@ -1,0 +1,122 @@
+<!-- breadcrumb start -->
+<div class="pa-breadcrumb">
+  <div class="container-fluid">
+    <div class="pa-breadcrumb-box">
+      <h1>Cart</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>Cart</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb end -->
+<!-- cart start -->
+<div class="pa-cart spacer-top spacer-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="pa-cart-box">
+          <table>
+            <thead>
+            <tr>
+              <th>Product image</th>
+              <th>Product name</th>
+              <th>unit price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <div class="pa-cart-img">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Feverfew.jpg" alt="image" class="img-fluid"/>
+                </div>
+              </td>
+              <td>
+                Feverfew
+              </td>
+              <td>Rs 1000</td>
+              <td>
+                <div class="pa-cart-quantity">
+                  <button class="pa-sub"></button>
+                  <input type="number" value="1" min="1"/>
+                  <button class="pa-add"></button>
+                </div>
+              </td>
+              <td>Rs 1000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="pa-cart-img">
+                  <img src="https://static.toiimg.com/thumb/msid-67725455,width-800,height-600,resizemode-75,imgsize-1187694,pt-32,y_pad-40/67725455.jpg" alt="image" class="img-fluid"/>
+                </div>
+              </td>
+              <td>
+                Ginger
+              </td>
+              <td>Rs 250</td>
+              <td>
+                <div class="pa-cart-quantity">
+                  <button class="pa-sub"></button>
+                  <input type="number" value="1" min="1"/>
+                  <button class="pa-add"></button>
+                </div>
+              </td>
+              <td>Rs 250</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="pa-cart-img">
+                  <img src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/chamomile_other/1800x1200_chamomile_other.jpg" alt="image" class="img-fluid"/>
+                </div>
+              </td>
+              <td>
+                Chamomile
+              </td>
+              <td>Rs 280</td>
+              <td>
+                <div class="pa-cart-quantity">
+                  <button class="pa-sub"></button>
+                  <input type="number" value="1" min="1" />
+                  <button class="pa-add"></button>
+                </div>
+              </td>
+              <td>Rs 280</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="pa-cart-total">
+                <p>Sub Total:</p>
+              </td>
+              <td class="pa-cart-total-price">
+                <p>Rs 1530</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3"><a href="shop.html" class="pa-btn">continue Shopping</a></td>
+              <td colspan="2" class="pa-cart-update"><button class="pa-btn">update cart</button></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="pa-garnd-total">
+            <p>
+              <span>Shipping charges</span>
+              <span>Rs 200</span>
+            </p>
+            <p>
+              <span>GST</span>
+              <span>18%</span>
+            </p>
+            <p>
+              <span>Grant total:</span>
+              <span>Rs 2650</span>
+            </p>
+            <a routerLink="/checkout" class="pa-btn">Proceed to checkout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- cart end -->
